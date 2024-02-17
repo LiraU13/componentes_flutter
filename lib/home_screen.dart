@@ -10,46 +10,52 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Componentes de Flutter'),
       ),
       body: ListView(
-        children: const [
+        children: [
           ListTile(
-            leading: Icon(Icons.water_drop, color: Colors.blue),
+            leading: const Icon(Icons.water_drop, color: Colors.blue),
             title: Text(
                     'Gotita 1',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 19,
+                    style: Theme.of(context).textTheme.headlineLarge, // Estilos para el título desde el tema de main_app.dart
+                    // style: TextStyle(
+                    //   color: Colors.blue,
+                    //   fontWeight: FontWeight.bold,
+                    //   fontSize: 19,
+                    // ),
                     ),
-                    ),
-            subtitle: Text('Normal'),
-            trailing: Icon(Icons.arrow_circle_right, color: Colors.orange),
+            subtitle: const Text('Normal'),
+            trailing: const Icon(Icons.arrow_circle_right, color: Colors.orange),
           ),
-          Divider(), //Muestra una línea
+          const Divider(), //Muestra una línea
           ListTile(
-            leading: Icon(Icons.water_drop_outlined, color: Colors.cyan), // M,uestra un icono a la izquierda
+            leading: const Icon(Icons.water_drop_outlined, color: Colors.cyan), // M,uestra un icono a la izquierda
             title: Text(
                     'Gotita 2',
-                    style: TextStyle(
-                      color: Colors.cyan,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 19,
-                    ),),
-            subtitle: Text('Outlined'),
-            trailing: Icon(Icons.arrow_circle_right, color: Colors.orange),
+                    style: Theme.of(context).textTheme.headlineLarge, // Estilos para el título desde el tema de main_app.dart
+                    // style: TextStyle(
+                    //   color: Colors.cyan,
+                    //   fontWeight: FontWeight.bold,
+                    //   fontSize: 19,
+                    // ),
+                  ),
+            subtitle: const Text('Outlined'),
+            trailing: const Icon(Icons.arrow_circle_right, color: Colors.orange),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.water_drop_rounded, color: Colors.teal),
+            leading: const Icon(Icons.water_drop_rounded, color: Colors.teal),
             title: Text(
                     'Gotita 3',
-                    style: TextStyle(
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 19,
-                    ),),
-            subtitle: Text('Rounded'),
-            trailing: Icon(Icons.arrow_circle_right, color: Colors.orange),
+                    style: Theme.of(context).textTheme.headlineLarge, // Estilos para el título desde el tema de main_app.dart
+                    // style: TextStyle(
+                    //   color: Colors.teal,
+                    //   fontWeight: FontWeight.bold,
+                    //   fontSize: 19,
+                    // ),
+                  ),
+            subtitle: const Text('Rounded'),
+            trailing: const Icon(Icons.arrow_circle_right, color: Colors.orange),
           ),
+          const Divider(),
         ],
       ),
     );
