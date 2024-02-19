@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Declaraciones de color
@@ -11,12 +12,17 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       color: backColor,
     ), // Cambia el color de la barra de navegación
-    textTheme: const TextTheme(
-      headlineLarge: TextStyle(
+    textTheme: TextTheme(
+      headlineLarge: GoogleFonts.tiltNeon( // theNautigal - Letra cursiva 
         // Cambia el estilo del título
-        fontWeight: FontWeight.bold, // Cambia el estilo de la fuente
-        color: Colors.indigo, // Cambia el color de la fuente
+        fontWeight: FontWeight.w700, // Cambia el estilo de la fuente
+        color: Colors.teal, // Cambia el color de la fuente
         fontSize: 16.5, // Cambia el tamaño de la fuente
+        decoration: TextDecoration.lineThrough, // Agrega una línea al texto
+        // decorationColor: Colors.indigo, // Cambia el color de la decoración
+        // decorationStyle: TextDecorationStyle.dotted, // Cambia el estilo de la decoración
+        // decorationThickness: 5, // Cambia el grosor de la decoración
+        // fontStyle: FontStyle.italic
       ),
     ),
   );
