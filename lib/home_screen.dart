@@ -12,9 +12,9 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.water_drop, color: Colors.blue),
+            leading: const Icon(Icons.input, color: Colors.blue),
             title: Text(
-                    'Gotita 1',
+                    'Entradas',
                     style: Theme.of(context).textTheme.headlineLarge, // Estilos para el título desde el tema de main_app.dart
                     // style: TextStyle(
                     //   color: Colors.blue,
@@ -22,14 +22,14 @@ class HomeScreen extends StatelessWidget {
                     //   fontSize: 19,
                     // ),
                     ),
-            subtitle: const Text('Normal'),
+            subtitle: const Text('Diferentes widgets para entradas de Flutter'),
             trailing: const Icon(Icons.arrow_circle_right, color: Colors.orange),
           ),
           const Divider(), //Muestra una línea
           ListTile(
-            leading: const Icon(Icons.water_drop_outlined, color: Colors.cyan), // M,uestra un icono a la izquierda
+            leading: const Icon(Icons.list, color: Colors.cyan), // M,uestra un icono a la izquierda
             title: Text(
-                    'Gotita 2',
+                    'ListView.builder',
                     style: Theme.of(context).textTheme.headlineLarge, // Estilos para el título desde el tema de main_app.dart
                     // style: TextStyle(
                     //   color: Colors.cyan,
@@ -37,14 +37,14 @@ class HomeScreen extends StatelessWidget {
                     //   fontSize: 19,
                     // ),
                   ),
-            subtitle: const Text('Outlined'),
+            subtitle: const Text('Scroll infinito'),
             trailing: const Icon(Icons.arrow_circle_right, color: Colors.orange),
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.water_drop_rounded, color: Colors.teal),
+            leading: const Icon(Icons.notification_add, color: Colors.teal),
             title: Text(
-                    'Gotita 3',
+                    'Notificaciones',
                     style: Theme.of(context).textTheme.headlineLarge, // Estilos para el título desde el tema de main_app.dart
                     // style: TextStyle(
                     //   color: Colors.teal,
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                     //   fontSize: 19,
                     // ),
                   ),
-            subtitle: const Text('Rounded'),
+            subtitle: const Text('Creación de notificaciones'),
             trailing: const Icon(Icons.arrow_circle_right, color: Colors.orange),
           ),
           const Divider(),
