@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class AppTheme {
   // Declaraciones de color
@@ -10,8 +11,26 @@ class AppTheme {
   // Declaraciones del tema claro 
   static final ThemeData lightTheme = ThemeData().copyWith(
     scaffoldBackgroundColor: mainColor, // Cambia el color de fondo de la app
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       color: backColor,
+      titleTextStyle: GoogleFonts.lexend(
+        color: mainColor,
+        fontSize: 28.5,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    iconTheme: const IconThemeData(
+      color: Colors.teal,
+      size: 25,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(iconColor),
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.lexendDeca(color: Colors.white, fontSize: 20),
+        ),
+      ),
     ), // Cambia el color de la barra de navegación
     textTheme: TextTheme(
       headlineLarge: GoogleFonts.tiltNeon( // theNautigal - Letra cursiva 
@@ -28,7 +47,7 @@ class AppTheme {
       bodySmall: GoogleFonts.dangrek( // theNautigal - Letra cursiva 
         // Cambia el estilo del subtítulo
         fontWeight: FontWeight.w500, // Cambia el estilo de la fuente
-        color: Colors.blueGrey, // Cambia el color de la fuente
+        color: Colors.indigo, // Cambia el color de la fuente
         fontSize: 14.0, // Cambia el tamaño de la fuente
         decoration: TextDecoration.underline, // Agrega una línea al texto
         decorationColor: Colors.indigo, // Cambia el color de la decoración

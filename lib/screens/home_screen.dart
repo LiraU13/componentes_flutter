@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:practica3/screens/infinite_list_screen.dart';
 import 'package:practica3/screens/inputs_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +18,10 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.input, color: Colors.blue),
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme,
+              child: const Icon(Icons.input_rounded),
+            ),
             title: Text(
               'Entradas',
               style: AppTheme.lightTheme.textTheme
@@ -31,8 +36,10 @@ class HomeScreen extends StatelessWidget {
               'Diferentes widgets para entradas de Flutter',
               style: AppTheme.lightTheme.textTheme.bodySmall,
             ),
-            trailing:
-                const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            trailing: IconTheme(
+              data: AppTheme.lightTheme.iconTheme,
+              child: const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            ),
             onTap: () {
               final ruta1 = MaterialPageRoute(builder: (context) {
                 return const InputsScreen();
@@ -42,8 +49,10 @@ class HomeScreen extends StatelessWidget {
           ),
           const Divider(), //Muestra una línea
           ListTile(
-            leading: const Icon(Icons.list,
-                color: Colors.cyan), // M,uestra un icono a la izquierda
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme,
+              child: const Icon(Icons.list),
+            ), // M,uestra un icono a la izquierda
             title: Text(
               'ListView.builder',
               style: AppTheme.lightTheme.textTheme
@@ -58,8 +67,10 @@ class HomeScreen extends StatelessWidget {
               'Scroll infinito',
               style: AppTheme.lightTheme.textTheme.bodySmall,
             ),
-            trailing:
-                const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            trailing:IconTheme(
+              data: AppTheme.lightTheme.iconTheme,
+              child: const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            ),
             onTap: () {
               final ruta2 = MaterialPageRoute(builder: (context) {
                 return const InfinitListScreen();
@@ -69,7 +80,10 @@ class HomeScreen extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.notification_add, color: Colors.teal),
+            leading: IconTheme(
+              data: AppTheme.lightTheme.iconTheme,
+              child: const Icon(Icons.notification_add),
+            ),
             title: Text(
               'Notificaciones',
               style: AppTheme.lightTheme.textTheme
@@ -84,8 +98,10 @@ class HomeScreen extends StatelessWidget {
               'Creación de notificaciones',
               style: AppTheme.lightTheme.textTheme.bodySmall,
             ),
-            trailing:
-                const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            trailing:IconTheme(
+              data: AppTheme.lightTheme.iconTheme,
+              child: const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            ),
             onTap: () {
               final ruta3 = MaterialPageRoute(builder: (context) {
                 return const NotificationsScreen();
