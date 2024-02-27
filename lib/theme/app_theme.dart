@@ -44,6 +44,17 @@ class AppTheme {
         // decorationThickness: 5, // Cambia el grosor de la decoración
         // fontStyle: FontStyle.italic
       ),
+      headlineMedium: GoogleFonts.tiltNeon( // theNautigal - Letra cursiva 
+        // Cambia el estilo del título
+        fontWeight: FontWeight.w700, // Cambia el estilo de la fuente
+        color: Colors.amber, // Cambia el color de la fuente
+        fontSize: 20, // Cambia el tamaño de la fuente
+        // decoration: TextDecoration.lineThrough, // Agrega una línea al texto
+        // decorationColor: Colors.indigo, // Cambia el color de la decoración
+        // decorationStyle: TextDecorationStyle.dotted, // Cambia el estilo de la decoración
+        // decorationThickness: 5, // Cambia el grosor de la decoración
+        // fontStyle: FontStyle.italic
+      ),
       bodySmall: GoogleFonts.dangrek( // theNautigal - Letra cursiva 
         // Cambia el estilo del subtítulo
         fontWeight: FontWeight.w500, // Cambia el estilo de la fuente
