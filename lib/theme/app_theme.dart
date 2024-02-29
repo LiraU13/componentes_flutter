@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class AppTheme {
   // Declaraciones de color
@@ -66,6 +65,10 @@ class AppTheme {
         decorationThickness: 2, // Cambia el grosor de la decoración
         // fontStyle: FontStyle.italic
       ),
+      bodyMedium: GoogleFonts.dangrek( // theNautigal - Letra cursiva 
+        fontWeight: FontWeight.w500, // Cambia el estilo de la fuente
+        color: backColor, 
+      )
     ),
   );
 }

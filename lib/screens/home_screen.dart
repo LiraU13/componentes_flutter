@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:practica3/screens/infinite_list_screen.dart';
 import 'package:practica3/screens/inputs_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -35,11 +33,20 @@ class HomeScreen extends StatelessWidget {
             subtitle: Text(
               'Diferentes widgets para entradas de Flutter',
               style: AppTheme.lightTheme.textTheme.bodySmall,
+            ),  
+
+    // PASAR A JUAN
+
+            trailing: const CircularProgressIndicator(
+              strokeWidth: 15,
+              value: 0.75,
+              color: AppTheme.iconColor,
+              backgroundColor: Colors.green,
             ),
-            trailing: IconTheme(
-              data: AppTheme.lightTheme.iconTheme,
-              child: const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
-            ),
+            // trailing: IconTheme(
+            //   data: AppTheme.lightTheme.iconTheme,
+            //   child: const Icon(Icons.arrow_circle_right, color: AppTheme.iconColor),
+            // ),
             onTap: () {
               final ruta1 = MaterialPageRoute(builder: (context) {
                 return const InputsScreen();
