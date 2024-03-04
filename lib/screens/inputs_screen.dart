@@ -10,8 +10,12 @@ class InputsScreen extends StatefulWidget {
 
 class _InputsScreenState extends State<InputsScreen> {
   bool valueSwitch = false;
+  bool isChecked1 = false;
+  bool isChecked2 = false;
+  bool isChecked3 = false;
   double valueSlider = 0.0;
   int selectedIndex = 0;
+  int selectedRadioOption = 0; // Para los RadioButtons
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,12 @@ class _InputsScreenState extends State<InputsScreen> {
             entradaTexto(),
             entradaSwitch(),
             entradaSlider(),
+            entradasRadio(),
+            Text(
+              '¿Qué usas para ejecutar tus apps?',
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            entradasCheck(),
             const ElevatedButton(onPressed: null, child: Text('Guardar'))
           ],
         ),
@@ -33,20 +43,29 @@ class _InputsScreenState extends State<InputsScreen> {
         currentIndex: selectedIndex,
         backgroundColor: AppTheme.lightTheme.primaryColorLight,
         items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.teal,),
-          label: 'Inicio',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.donut_large_sharp, color: Colors.teal,),
-          label: 'Datos',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.exit_to_app, color: Colors.teal,),
-          label: 'Salir',
-        ),
-      ],
-      unselectedLabelStyle: AppTheme.lightTheme.textTheme.bodyLarge,
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.teal,
+            ),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.donut_large_sharp,
+              color: Colors.teal,
+            ),
+            label: 'Datos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.teal,
+            ),
+            label: 'Salir',
+          ),
+        ],
+        unselectedLabelStyle: AppTheme.lightTheme.textTheme.bodyLarge,
       ),
     );
   }
@@ -110,6 +129,103 @@ class _InputsScreenState extends State<InputsScreen> {
               });
               valueSlider = value;
             }),
+      ],
+    );
+  }
+
+  Column entradasRadio() {
+    return Column(children: [
+      Text(
+        'Qué prefieres usar para desarrollo móvil?',
+        style: AppTheme.lightTheme.textTheme.headlineLarge,
+      ),
+      ListTile(
+        title: Text(
+          'Kotlin',
+          style: AppTheme.lightTheme.textTheme.headlineSmall,
+        ),
+        leading: Transform.scale(
+          scale: 1.5,
+          child: Radio(
+            value: 1,
+            groupValue: selectedRadioOption,
+            onChanged: (value) {
+              setState(() {
+                selectedRadioOption = value!;
+                print('Opción seleccionada: $selectedRadioOption');
+              });
+            },
+          ),
+        ),
+      ),
+      ListTile(
+        title: Text(
+          'Flutter',
+          style: AppTheme.lightTheme.textTheme.headlineSmall,
+        ),
+        leading: Transform.scale(
+          scale: 1.5,
+          child: Radio(
+            value: 2,
+            groupValue: selectedRadioOption,
+            onChanged: (value) {
+              setState(() {
+                selectedRadioOption = value!;
+                print('Opción seleccionada: $selectedRadioOption');
+              });
+            },
+          ),
+        ),
+      )
+    ]);
+  }
+
+  Row entradasCheck() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Navegador',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        Checkbox(
+          value: isChecked1,
+          onChanged: (value) {
+            setState(() {
+              isChecked1 = value!;
+              print('Estado del checkbox 1: $isChecked1');
+            });
+            isChecked1 = value!;
+          },
+        ),
+        Text(
+          'Emulador',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        Checkbox(
+          value: isChecked2,
+          onChanged: (value) {
+            setState(() {
+              isChecked2 = value!;
+              print('Estado del checkbox 2: $isChecked2');
+            });
+            isChecked2 = value!;
+          },
+        ),
+        Text(
+          'Windows',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        Checkbox(
+          value: isChecked3,
+          onChanged: (value) {
+            setState(() {
+              isChecked3 = value!;
+              print('Estado del checkbox 3: $isChecked3');
+            });
+            isChecked3 = value!;
+          },
+        ),
       ],
     );
   }
