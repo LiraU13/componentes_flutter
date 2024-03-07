@@ -66,6 +66,11 @@ class _InputsScreenState extends State<InputsScreen> {
           ),
         ],
         unselectedLabelStyle: AppTheme.lightTheme.textTheme.bodyLarge,
+        onTap: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
       ),
     );
   }
