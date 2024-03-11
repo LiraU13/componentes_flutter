@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/screens/home_screen.dart';
+import 'package:practica3/screens/infinite_list_screen.dart';
+import 'package:practica3/screens/notifications_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -10,6 +13,41 @@ class ImagesScreen extends StatefulWidget {
 }
 
 class _ImagesScreenState extends State<ImagesScreen> {
+  int selectedIndex = 3;
+
+  List screens = const [
+    HomeScreen(),
+    InfinitListScreen(),
+    NotificationsScreen(),
+    ImagesScreen(),
+  ];
+
+  openScreen(int index) {
+    setState(() {
+      MaterialPageRoute ruta = MaterialPageRoute(builder: (context) => const HomeScreen());
+      switch (index) {
+        case 0:
+          ruta =
+              MaterialPageRoute(builder: (context) => const HomeScreen());
+          break;
+        case 1:
+          ruta = MaterialPageRoute(
+              builder: (context) => const InfinitListScreen());
+          break;
+        case 2:
+          ruta = MaterialPageRoute(
+              builder: (context) => const NotificationsScreen());
+          break;
+        case 3:
+          ruta =
+              MaterialPageRoute(builder: (context) => const ImagesScreen());
+          break;
+      }
+      selectedIndex = index;
+      Navigator.push(context, ruta);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +55,47 @@ class _ImagesScreenState extends State<ImagesScreen> {
         title: const Text(
           'Imágenes',
         ),
+        automaticallyImplyLeading: false,
       ),
       body: ListView(
         children: [
           imageCard(),
           imageWeb(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        backgroundColor: Colors.deepOrange,
+        selectedItemColor: Colors.indigo,
+        unselectedItemColor: Colors.black54,
+        onTap: (index) => openScreen(index),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Lista',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notification_add,
+            ),
+            label: 'Notificaciones',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.image,
+            ),
+            label: 'Imágenes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.exit_to_app,
+            ),
+            label: 'Salir',
+          ),
         ],
       ),
     );
@@ -79,7 +153,8 @@ class _ImagesScreenState extends State<ImagesScreen> {
                 placeholder: kTransparentImage,
                 image:
                     'https://b1659141.smushcdn.com/1659141/wp-content/uploads/2012/06/1968-revology-gt-fastback-highlandgreen-170-01-e1692388740775.jpeg?lossy=1&strip=1&webp=1',
-              )),
+              )
+            ),
         ),
         const Positioned(
           left: 190,
