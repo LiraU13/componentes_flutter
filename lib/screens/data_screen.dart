@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/infinite_list_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
+import 'package:practica3/theme/app_theme.dart';
 
 class DataScreen extends StatefulWidget {
-  const DataScreen({super.key});
+
+  final bool valueSwitch;
+  final bool isChecked1;
+  final bool isChecked2;
+  final bool isChecked3;
+  final double valueSlider;
+  final int selectedRadioOption;
+  final String textInput;
+
+  const DataScreen({
+    super.key,
+    required this.valueSwitch,
+    required this.isChecked1,
+    required this.isChecked2,
+    required this.isChecked3,
+    required this.valueSlider,
+    required this.selectedRadioOption,
+    required this.textInput,
+  });
 
   @override
   State<DataScreen> createState() => _DataScreenState();
@@ -13,13 +33,6 @@ class DataScreen extends StatefulWidget {
 
 class _DataScreenState extends State<DataScreen> {
   int selectedIndex = 0;
-
-  List screens = const [
-    HomeScreen(),
-    InfinitListScreen(),
-    NotificationsScreen(),
-    ImagesScreen(),
-  ];
 
   openScreen(int index) {
     setState(() {
@@ -52,7 +65,43 @@ class _DataScreenState extends State<DataScreen> {
       appBar: AppBar(
         title: const Text('Datos Guardados'),
       ),
-      body: const Column(),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('-> Nombre: ${widget.textInput}',
+                style: AppTheme.lightTheme.textTheme.headlineLarge),
+            const SizedBox(
+              height: 2,
+            ),
+            Text('-> Le gusta Flutter: ${widget.valueSwitch ? "Sí" : "No"}',
+                style: AppTheme.lightTheme.textTheme.headlineLarge),
+            const SizedBox(
+              height: 2,
+            ),
+            Text('-> Que tanto le gusta Flutter: ${widget.valueSlider}',
+                style: AppTheme.lightTheme.textTheme.headlineLarge),
+            const SizedBox(
+              height: 2,
+            ),
+            Text('-> Para desarrollo móvil prefiere: ${widget.selectedRadioOption == 1 ? "Kotlin" : "Flutter"}',
+                style: AppTheme.lightTheme.textTheme.headlineLarge),
+            const SizedBox(
+              height: 2,
+            ),
+            Text('-> Para ejecutar sus apps utiliza: ',
+                style: AppTheme.lightTheme.textTheme.headlineLarge),
+            const SizedBox(
+              height: 2,
+            ),
+            Text('    - Navegador: ${widget.isChecked1 ? "Sí" : "No"}', style: AppTheme.lightTheme.textTheme.headlineLarge),
+            Text('    - Emulador: ${widget.isChecked2 ? "Sí" : "No"}', style: AppTheme.lightTheme.textTheme.headlineLarge),
+            Text('    - Smartphone: ${widget.isChecked3 ? "Sí" : "No"}', style: AppTheme.lightTheme.textTheme.headlineLarge),
+
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         selectedItemColor: Colors.indigo,

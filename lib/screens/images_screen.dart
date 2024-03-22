@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/infinite_list_screen.dart';
 import 'package:practica3/screens/notifications_screen.dart';
@@ -14,13 +15,6 @@ class ImagesScreen extends StatefulWidget {
 
 class _ImagesScreenState extends State<ImagesScreen> {
   int selectedIndex = 3;
-
-  List screens = const [
-    HomeScreen(),
-    InfinitListScreen(),
-    NotificationsScreen(),
-    ImagesScreen(),
-  ];
 
   openScreen(int index) {
     setState(() {
@@ -42,6 +36,8 @@ class _ImagesScreenState extends State<ImagesScreen> {
           ruta =
               MaterialPageRoute(builder: (context) => const ImagesScreen());
           break;
+        case 4:
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
       }
       selectedIndex = index;
       Navigator.push(context, ruta);

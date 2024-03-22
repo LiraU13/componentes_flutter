@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:practica3/screens/data_screen.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
@@ -20,22 +21,16 @@ class _InputsScreenState extends State<InputsScreen> {
   bool isChecked3 = false;
   double valueSlider = 0.0;
   int selectedRadioOption = 0; // Para los RadioButtons
-  int selectedIndex = 0; 
-
-  List screens = const [
-    HomeScreen(),
-    InfinitListScreen(),
-    NotificationsScreen(),
-    ImagesScreen(),
-  ];
+  int selectedIndex = 0;
+  TextEditingController textController = TextEditingController(); //
 
   openScreen(int index) {
     setState(() {
-      MaterialPageRoute ruta = MaterialPageRoute(builder: (context) => const HomeScreen());
+      MaterialPageRoute ruta =
+          MaterialPageRoute(builder: (context) => const HomeScreen());
       switch (index) {
         case 0:
-          ruta =
-              MaterialPageRoute(builder: (context) => const HomeScreen());
+          ruta = MaterialPageRoute(builder: (context) => const HomeScreen());
           break;
         case 1:
           ruta = MaterialPageRoute(
@@ -46,9 +41,10 @@ class _InputsScreenState extends State<InputsScreen> {
               builder: (context) => const NotificationsScreen());
           break;
         case 3:
-          ruta =
-              MaterialPageRoute(builder: (context) => const ImagesScreen());
+          ruta = MaterialPageRoute(builder: (context) => const ImagesScreen());
           break;
+        case 4:
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
       }
       selectedIndex = index;
       Navigator.push(context, ruta);
@@ -56,75 +52,108 @@ class _InputsScreenState extends State<InputsScreen> {
   }
 
   @override
+  void dispose() {
+    textController.dispose(); // Limpia el controlador
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Entradas'), 
-      automaticallyImplyLeading: false,),
-      
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            entradaTexto(),
-            entradaSwitch(),
-            entradaSlider(),
-            entradasRadio(),
-            Text(
-              '¿Qué usas para ejecutar tus apps?',
-              style: AppTheme.lightTheme.textTheme.headlineLarge,
-            ),
-            entradasCheck(),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const DataScreen()));
-              },
-              child: const Text('Guardar')
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('Entradas'),
+          automaticallyImplyLeading: false,
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        selectedItemColor: Colors.indigo,
-        unselectedItemColor: Colors.black54,
-        onTap: (index) => openScreen(index),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Lista',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notification_add,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                entradaTexto(),
+                const SizedBox(
+                  height: 20,
+                ),
+                entradaSwitch(),
+                const SizedBox(
+                  height: 20,
+                ),
+                entradaSlider(),
+                const SizedBox(
+                  height: 20,
+                ),
+                entradasRadio(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '¿Qué usas para ejecutar tus apps?',
+                  style: AppTheme.lightTheme.textTheme.headlineLarge,
+                ),
+                entradasCheck(),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DataScreen(
+                                    valueSwitch: valueSwitch,
+                                    isChecked1: isChecked1,
+                                    isChecked2: isChecked2,
+                                    isChecked3: isChecked3,
+                                    valueSlider: valueSlider,
+                                    selectedRadioOption: selectedRadioOption,
+                                    textInput: textController
+                                        .text, // Valor del TextField
+                                  )));
+                    },
+                    child: const Text('Guardar'))
+              ],
             ),
-            label: 'Notificaciones',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.image,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: selectedIndex,
+          selectedItemColor: Colors.indigo,
+          unselectedItemColor: Colors.black54,
+          onTap: (index) => openScreen(index),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Inicio',
             ),
-            label: 'Imágenes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.exit_to_app,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: 'Lista',
             ),
-            label: 'Salir',
-          ),
-        ],
-      ),
-    );
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.notification_add,
+              ),
+              label: 'Notificaciones',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.image,
+              ),
+              label: 'Imágenes',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.exit_to_app,
+              ),
+              label: 'Salir',
+            ),
+          ],
+        ));
   }
 
   TextField entradaTexto() {
     return TextField(
+      controller: textController,
       style: AppTheme.lightTheme.textTheme.headlineMedium,
       decoration: InputDecoration(
         border: const UnderlineInputBorder(),
@@ -150,9 +179,9 @@ class _InputsScreenState extends State<InputsScreen> {
           onChanged: (value) {
             setState(() {
               valueSwitch = value;
-              print('Estado del switch: $valueSwitch');
+              // print('Estado del switch: $valueSwitch');
             });
-            valueSwitch = value;
+            // valueSwitch = value;
           },
         )
       ],
@@ -178,9 +207,9 @@ class _InputsScreenState extends State<InputsScreen> {
             onChanged: (value) {
               setState(() {
                 valueSlider = value;
-                print('Valor del slider: $valueSlider');
+                // print('Valor del slider: $valueSlider');
               });
-              valueSlider = value;
+              // valueSlider = value;
             }),
       ],
     );
@@ -205,7 +234,7 @@ class _InputsScreenState extends State<InputsScreen> {
             onChanged: (value) {
               setState(() {
                 selectedRadioOption = value!;
-                print('Opción seleccionada: $selectedRadioOption');
+                // print('Opción seleccionada: $selectedRadioOption');
               });
             },
           ),
@@ -224,7 +253,7 @@ class _InputsScreenState extends State<InputsScreen> {
             onChanged: (value) {
               setState(() {
                 selectedRadioOption = value!;
-                print('Opción seleccionada: $selectedRadioOption');
+                // print('Opción seleccionada: $selectedRadioOption');
               });
             },
           ),
@@ -246,9 +275,9 @@ class _InputsScreenState extends State<InputsScreen> {
           onChanged: (value) {
             setState(() {
               isChecked1 = value!;
-              print('Estado del checkbox 1: $isChecked1');
+              // print('Estado del checkbox 1: $isChecked1');
             });
-            isChecked1 = value!;
+            // isChecked1 = value!;
           },
         ),
         Text(
@@ -260,9 +289,9 @@ class _InputsScreenState extends State<InputsScreen> {
           onChanged: (value) {
             setState(() {
               isChecked2 = value!;
-              print('Estado del checkbox 2: $isChecked2');
+              // print('Estado del checkbox 2: $isChecked2');
             });
-            isChecked2 = value!;
+            // isChecked2 = value!;
           },
         ),
         Text(
@@ -274,9 +303,9 @@ class _InputsScreenState extends State<InputsScreen> {
           onChanged: (value) {
             setState(() {
               isChecked3 = value!;
-              print('Estado del checkbox 3: $isChecked3');
+              // print('Estado del checkbox 3: $isChecked3');
             });
-            isChecked3 = value!;
+            // isChecked3 = value!;
           },
         ),
       ],
